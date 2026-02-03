@@ -1,0 +1,2 @@
+service,incident_name,start_ts,end_ts,summary,suspected_cause
+orders-api,INC-001: latency + errors during peak traffic,2026-01-31T01:06:00Z,2026-01-31T02:36:00Z,Traffic spike coincides with elevated tail latency and higher error rates.,Capacity saturation and downstream dependency slowness (synthetic).
