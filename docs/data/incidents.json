@@ -11,6 +11,13 @@
     "impact": "~18% of sessions experienced noticeable slowdown.",
     "findings": "Network delay spiked on a primary path. A backup path remained healthy, suggesting a single route issue rather than a full outage.",
     "mitigation": "Traffic was shifted away from the degraded path. Performance returned to normal and stayed stable.",
+    "timeline": [
+      { "time": "10:12", "event": "Alert triggered for unusual network delay." },
+      { "time": "10:14", "event": "Confirmed customer impact in the ATL region." },
+      { "time": "10:18", "event": "Identified the degraded path as the most likely cause." },
+      { "time": "10:22", "event": "Shifted traffic away from the degraded path." },
+      { "time": "10:28", "event": "Delay stabilized and incident was marked resolved." }
+    ],
     "evidence": [
       { "path": "./evidence/INC-0001/delay.png", "caption": "Network Delay during the incident window" },
       { "path": "./evidence/INC-0001/affected.png", "caption": "Most affected locations/devices" },
@@ -30,6 +37,13 @@
     "impact": "Intermittent failure bursts for ~25 minutes.",
     "findings": "Dropped traffic aligned with short link flaps, suggesting an unstable edge connection.",
     "mitigation": "Interface was stabilized and monitoring thresholds were tightened for earlier detection.",
+    "timeline": [
+      { "time": "15:40", "event": "Alert triggered for intermittent drops." },
+      { "time": "15:44", "event": "Confirmed failures were concentrated at Site B." },
+      { "time": "15:50", "event": "Observed short flaps consistent with instability." },
+      { "time": "15:56", "event": "Stabilization actions applied to reduce drops." },
+      { "time": "16:05", "event": "Failure rate returned to normal; continued monitoring." }
+    ],
     "evidence": [
       { "path": "./evidence/INC-0002/delay.png", "caption": "Delay and drop pattern" },
       { "path": "./evidence/INC-0002/affected.png", "caption": "Where failures clustered" },
@@ -37,24 +51,32 @@
     ],
     "grafana": { "url": "" }
   },
+
   {
-  "id": "INC-0003",
-  "title": "Brief slowdown during peak hour",
-  "severity": "Low",
-  "status": "Resolved",
-  "where": "ATL region",
-  "start": "2026-02-05T08:10:00-05:00",
-  "end": "2026-02-05T08:22:00-05:00",
-  "customer_symptom": "A few users noticed pages loading slower than normal.",
-  "impact": "Small performance dip, limited to a short window.",
-  "findings": "A temporary congestion spike occurred during a burst of traffic. Performance returned to baseline without sustained degradation.",
-  "mitigation": "No direct intervention needed. Documented the pattern and added a watch for recurring spikes.",
-  "evidence": [
-    { "path": "./evidence/INC-0001/delay.png", "caption": "Network Delay during the incident window" },
-    { "path": "./evidence/INC-0001/affected.png", "caption": "Most affected locations/devices" },
-    { "path": "./evidence/INC-0001/before_after.png", "caption": "Before vs After comparison" }
-  ],
-  "grafana": { "url": "" }
+    "id": "INC-0003",
+    "title": "Brief slowdown during peak hour",
+    "severity": "Low",
+    "status": "Resolved",
+    "where": "ATL region",
+    "start": "2026-02-05T08:10:00-05:00",
+    "end": "2026-02-05T08:22:00-05:00",
+    "customer_symptom": "A few users noticed pages loading slower than normal.",
+    "impact": "Small performance dip, limited to a short window.",
+    "findings": "A temporary congestion spike occurred during a burst of traffic. Performance returned to baseline without sustained degradation.",
+    "mitigation": "No direct intervention needed. Documented the pattern and added a watch for recurring spikes.",
+    "timeline": [
+      { "time": "08:10", "event": "Alert triggered for a short performance dip." },
+      { "time": "08:12", "event": "Verified impact was limited and short-lived." },
+      { "time": "08:16", "event": "Observed congestion spike trend easing." },
+      { "time": "08:20", "event": "Performance returned to baseline." },
+      { "time": "08:22", "event": "Closed incident; added watch for recurrence." }
+    ],
+    "evidence": [
+      { "path": "./evidence/INC-0003/delay.png", "caption": "Network Delay during the incident window" },
+      { "path": "./evidence/INC-0003/affected.png", "caption": "Most affected locations/devices" },
+      { "path": "./evidence/INC-0003/before_after.png", "caption": "Before vs After comparison" }
+    ],
+    "grafana": { "url": "" }
   },
   {
     "id": "INC-0004",
@@ -68,10 +90,17 @@
     "impact": "Intermittent access failures for a subset of users.",
     "findings": "Failures clustered around a single edge path. The pattern matched short-lived instability rather than total outage.",
     "mitigation": "Shifted traffic away from the unstable path and monitored until the failure rate dropped to normal.",
+    "timeline": [
+      { "time": "19:05", "event": "Alert triggered for increased connection failures." },
+      { "time": "19:10", "event": "Confirmed impact was limited to remote access." },
+      { "time": "19:20", "event": "Identified a single unstable edge path." },
+      { "time": "19:28", "event": "Shifted traffic away from the unstable path." },
+      { "time": "19:41", "event": "Failures normalized; incident resolved." }
+    ],
     "evidence": [
-      { "path": "./evidence/INC-0002/delay.png", "caption": "Delay and drop pattern" },
-      { "path": "./evidence/INC-0002/affected.png", "caption": "Where failures clustered" },
-      { "path": "./evidence/INC-0002/before_after.png", "caption": "Stability after mitigation" }
+      { "path": "./evidence/INC-0004/delay.png", "caption": "Failure pattern during the incident window" },
+      { "path": "./evidence/INC-0004/affected.png", "caption": "Where failures clustered" },
+      { "path": "./evidence/INC-0004/before_after.png", "caption": "Recovery after mitigation" }
     ],
     "grafana": { "url": "" }
   },
@@ -85,12 +114,19 @@
     "end": "2026-02-06T11:35:00-05:00",
     "customer_symptom": "Calls sounded robotic or cut out for some participants.",
     "impact": "Real-time traffic quality degraded for a noticeable portion of sessions.",
-    "findings": "Packet loss increased during the window and aligned with a network event. Non-real-time traffic was less affected.",
+    "findings": "Dropped traffic increased during the window and aligned with a network event. Non-real-time traffic was less affected.",
     "mitigation": "Adjusted routing preference to avoid the affected segment and kept a tighter watch on drop rate thresholds.",
+    "timeline": [
+      { "time": "11:02", "event": "Alert triggered for degraded call quality indicators." },
+      { "time": "11:06", "event": "Confirmed packet drops affecting real-time traffic." },
+      { "time": "11:14", "event": "Isolated impact to a specific segment." },
+      { "time": "11:22", "event": "Adjusted routing preference away from the segment." },
+      { "time": "11:35", "event": "Call quality stabilized; continued monitoring." }
+    ],
     "evidence": [
-      { "path": "./evidence/INC-0002/delay.png", "caption": "Drop pattern during the incident window" },
-      { "path": "./evidence/INC-0002/affected.png", "caption": "Where impact clustered" },
-      { "path": "./evidence/INC-0002/before_after.png", "caption": "Before vs After comparison" }
+      { "path": "./evidence/INC-0005/delay.png", "caption": "Drop pattern during the incident window" },
+      { "path": "./evidence/INC-0005/affected.png", "caption": "Where impact clustered" },
+      { "path": "./evidence/INC-0005/before_after.png", "caption": "Before vs After comparison" }
     ],
     "grafana": { "url": "" }
   },
@@ -106,10 +142,17 @@
     "impact": "Performance degradation for users connected through Site C.",
     "findings": "Delay increased gradually, peaked, and then stabilized. The pattern suggested a constrained path rather than a full outage.",
     "mitigation": "Shifted traffic and confirmed the delay returned to normal levels within the same session.",
+    "timeline": [
+      { "time": "14:18", "event": "Alert triggered for elevated response time." },
+      { "time": "14:24", "event": "Confirmed impact primarily tied to Site C." },
+      { "time": "14:32", "event": "Identified constrained path behavior." },
+      { "time": "14:40", "event": "Shifted traffic away from the constrained path." },
+      { "time": "14:52", "event": "Performance normalized; incident resolved." }
+    ],
     "evidence": [
-      { "path": "./evidence/INC-0001/delay.png", "caption": "Network Delay during the incident window" },
-      { "path": "./evidence/INC-0001/affected.png", "caption": "Most affected locations/devices" },
-      { "path": "./evidence/INC-0001/before_after.png", "caption": "Before vs After comparison" }
+      { "path": "./evidence/INC-0006/delay.png", "caption": "Network Delay during the incident window" },
+      { "path": "./evidence/INC-0006/affected.png", "caption": "Most affected locations/devices" },
+      { "path": "./evidence/INC-0006/before_after.png", "caption": "Before vs After comparison" }
     ],
     "grafana": { "url": "" }
   },
@@ -125,10 +168,17 @@
     "impact": "Brief service interruption for a specific region.",
     "findings": "A sharp failure spike occurred and recovered quickly. The impact was concentrated, which ruled out broad service failure.",
     "mitigation": "Confirmed recovery, validated stability for 30 minutes post-event, and documented for trend tracking.",
+    "timeline": [
+      { "time": "09:31", "event": "Alert triggered for sudden failure spike." },
+      { "time": "09:33", "event": "Confirmed the impact was limited to one region." },
+      { "time": "09:36", "event": "Observed rapid recovery behavior beginning." },
+      { "time": "09:40", "event": "Traffic stabilized and failures dropped to normal." },
+      { "time": "09:44", "event": "Marked resolved after quick stability validation." }
+    ],
     "evidence": [
-      { "path": "./evidence/INC-0002/delay.png", "caption": "Failure spike during the incident window" },
-      { "path": "./evidence/INC-0002/affected.png", "caption": "Where failures clustered" },
-      { "path": "./evidence/INC-0002/before_after.png", "caption": "Recovery after the incident" }
+      { "path": "./evidence/INC-0007/delay.png", "caption": "Failure spike during the incident window" },
+      { "path": "./evidence/INC-0007/affected.png", "caption": "Where failures clustered" },
+      { "path": "./evidence/INC-0007/before_after.png", "caption": "Recovery after the incident" }
     ],
     "grafana": { "url": "" }
   },
@@ -144,10 +194,17 @@
     "impact": "Noticeable slowdown across a subset of traffic.",
     "findings": "Timing aligned closely with a change window and the degradation pattern was consistent until rollback.",
     "mitigation": "Rolled back the change and confirmed performance returned to baseline.",
+    "timeline": [
+      { "time": "20:10", "event": "Alert triggered for elevated delay after change window." },
+      { "time": "20:16", "event": "Confirmed degradation across a subset of traffic." },
+      { "time": "20:22", "event": "Correlated onset with recent configuration change." },
+      { "time": "20:30", "event": "Rolled back change to restore baseline performance." },
+      { "time": "20:46", "event": "Performance verified stable; incident resolved." }
+    ],
     "evidence": [
-      { "path": "./evidence/INC-0001/delay.png", "caption": "Delay increase aligned to the change window" },
-      { "path": "./evidence/INC-0001/affected.png", "caption": "Areas/devices with highest impact" },
-      { "path": "./evidence/INC-0001/before_after.png", "caption": "Before vs After rollback" }
+      { "path": "./evidence/INC-0008/delay.png", "caption": "Delay increase aligned to the change window" },
+      { "path": "./evidence/INC-0008/affected.png", "caption": "Areas/devices with highest impact" },
+      { "path": "./evidence/INC-0008/before_after.png", "caption": "Before vs After rollback" }
     ],
     "grafana": { "url": "" }
   },
@@ -163,10 +220,17 @@
     "impact": "Minor intermittent impact, mostly masked by failover behavior.",
     "findings": "Loss appeared in bursts on the backup path. Primary path remained healthy, indicating localized instability.",
     "mitigation": "Kept traffic primarily on the stable route and opened monitoring for recurrence during peak periods.",
+    "timeline": [
+      { "time": "13:05", "event": "Alert triggered for intermittent loss bursts." },
+      { "time": "13:12", "event": "Confirmed primary route remained stable." },
+      { "time": "13:25", "event": "Observed loss bursts limited to backup path." },
+      { "time": "13:40", "event": "Kept traffic pinned to stable route while monitoring." },
+      { "time": "13:55", "event": "Documented pattern; monitoring continued." }
+    ],
     "evidence": [
-      { "path": "./evidence/INC-0002/delay.png", "caption": "Intermittent loss bursts" },
-      { "path": "./evidence/INC-0002/affected.png", "caption": "Where failures clustered" },
-      { "path": "./evidence/INC-0002/before_after.png", "caption": "Stability comparison" }
+      { "path": "./evidence/INC-0009/delay.png", "caption": "Intermittent loss bursts" },
+      { "path": "./evidence/INC-0009/affected.png", "caption": "Where failures clustered" },
+      { "path": "./evidence/INC-0009/before_after.png", "caption": "Stability comparison" }
     ],
     "grafana": { "url": "" }
   },
@@ -182,10 +246,17 @@
     "impact": "Higher response times for users outside the primary region.",
     "findings": "Delay increased on international routes while local traffic remained normal, pointing to upstream routing conditions.",
     "mitigation": "Adjusted routing preference where possible and confirmed the delay returned to normal levels.",
+    "timeline": [
+      { "time": "07:25", "event": "Alert triggered for elevated international delay." },
+      { "time": "07:32", "event": "Confirmed local traffic was normal." },
+      { "time": "07:40", "event": "Isolated impact to international routing behavior." },
+      { "time": "07:52", "event": "Adjusted routing preference where possible." },
+      { "time": "08:05", "event": "Delay returned to normal; incident resolved." }
+    ],
     "evidence": [
-      { "path": "./evidence/INC-0001/delay.png", "caption": "Delay trend for international routes" },
-      { "path": "./evidence/INC-0001/affected.png", "caption": "Most affected locations" },
-      { "path": "./evidence/INC-0001/before_after.png", "caption": "Before vs After improvement" }
+      { "path": "./evidence/INC-0010/delay.png", "caption": "Delay trend for international routes" },
+      { "path": "./evidence/INC-0010/affected.png", "caption": "Most affected locations" },
+      { "path": "./evidence/INC-0010/before_after.png", "caption": "Before vs After improvement" }
     ],
     "grafana": { "url": "" }
   }
