@@ -13,13 +13,16 @@
     <aside class="sidebar">
       <div class="logo">OC</div>
 
-      <a class="sidebtn" href="../index.html">🏠</a>
-      <a class="sidebtn" href="../incidents.html">🧾</a>
-      <a class="sidebtn" href="../security/">🛡️</a>
-      <a class="sidebtn" href="../status/">🟢</a>
-      <a class="sidebtn" href="../rca/">🧩</a>
-      <a class="sidebtn active" href="./">📘</a>
-      <a class="sidebtn" href="../how-it-works.html">🧠</a>
+      <a class="sidebtn" href="../index.html" title="Home" aria-label="Home">🏠</a>
+      <a class="sidebtn" href="../incidents.html" title="Incidents" aria-label="Incidents">🧾</a>
+      <a class="sidebtn active" href="./" title="Security" aria-label="Security">🛡️</a>
+
+      <!-- FIXED: these must go up one folder from /security/ -->
+      <a class="sidebtn" href="../status/" title="Status" aria-label="Status">🟢</a>
+      <a class="sidebtn" href="../rca/" title="RCA Library" aria-label="RCA Library">🧩</a>
+      <a class="sidebtn" href="../runbooks/" title="Runbooks" aria-label="Runbooks">📘</a>
+
+      <a class="sidebtn" href="../how-it-works.html" title="How it works" aria-label="How it works">🧠</a>
     </aside>
 
     <main class="main">
@@ -28,9 +31,14 @@
         <nav class="pills">
           <a class="pilllink" href="../index.html">Home</a>
           <a class="pilllink" href="../incidents.html">Incidents</a>
+          <a class="pilllink" href="./">Security</a>
+
+          <!-- FIXED: these must go up one folder from /security/ -->
           <a class="pilllink" href="../status/">Status</a>
           <a class="pilllink" href="../rca/">RCA</a>
-          <a class="pilllink" href="./">Runbooks</a>
+          <a class="pilllink" href="../runbooks/">Runbooks</a>
+
+          <a class="pilllink" href="../how-it-works.html">How it works</a>
         </nav>
       </header>
 
@@ -66,3 +74,4 @@
   <script src="./runbooks.js"></script>
 </body>
 </html>
+
