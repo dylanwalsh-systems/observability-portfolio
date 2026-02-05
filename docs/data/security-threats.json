@@ -1,0 +1,26 @@
+[
+  {
+    "vector": "Input",
+    "threat": "Script injection / unsafe rendering",
+    "risk": "Mitigated",
+    "status": "Render as text + validate schema"
+  },
+  {
+    "vector": "Network",
+    "threat": "Request flooding (DoS / spam)",
+    "risk": "Monitored",
+    "status": "Recommend rate limiting + caching strategy"
+  },
+  {
+    "vector": "Data",
+    "threat": "Scraping / automated probing",
+    "risk": "Accepted",
+    "status": "Public data only; integrity is reputational"
+  },
+  {
+    "vector": "Telemetry",
+    "threat": "False positives / alert fatigue",
+    "risk": "Monitored",
+    "status": "Confidence scoring + baselines"
+  }
+]

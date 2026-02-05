@@ -1,0 +1,6 @@
+{
+  "req_per_min": 84,
+  "rate_4xx": "1.8%",
+  "anomaly_score": 0.42,
+  "signal_confidence": "0.81"
+}

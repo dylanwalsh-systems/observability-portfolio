@@ -1,0 +1,26 @@
+[
+  {
+    "decision": "No Authentication",
+    "tag": "Demo Scope",
+    "date": "2026-02-05",
+    "reason": "This portfolio page is designed to be publicly viewable without credentials.",
+    "tradeoff": "Increased exposure to scraping and request abuse.",
+    "mitigation": "Read-only content, no sensitive actions, synthetic data."
+  },
+  {
+    "decision": "Client-side Rendering with Strict Escaping",
+    "tag": "Injection Prevention",
+    "date": "2026-02-05",
+    "reason": "Security content is loaded from JSON and rendered dynamically for a real dashboard feel.",
+    "tradeoff": "Unsafe DOM insertion could introduce XSS if handled carelessly.",
+    "mitigation": "Escape all strings and validate expected schema fields."
+  },
+  {
+    "decision": "Risk Acceptance for Scraping",
+    "tag": "Risk Management",
+    "date": "2026-02-05",
+    "reason": "Public portfolio data is intended to be accessible and reviewable.",
+    "tradeoff": "Automated collection of content is possible.",
+    "mitigation": "No secrets/PII; any abuse is handled via rate controls in a real deployment."
+  }
+]
