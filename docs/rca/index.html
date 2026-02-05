@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RCA Library • Operations Console</title>
+
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="stylesheet" href="./rca.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">OC</div>
+
+      <a class="sidebtn" href="../index.html">🏠</a>
+      <a class="sidebtn" href="../incidents.html">🧾</a>
+      <a class="sidebtn" href="../security/">🛡️</a>
+      <a class="sidebtn" href="../status/">🟢</a>
+      <a class="sidebtn active" href="./">🧩</a>
+      <a class="sidebtn" href="../runbooks/">📘</a>
+      <a class="sidebtn" href="../how-it-works.html">🧠</a>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="brand"><span class="dot"></span> Operations Console (Demo)</div>
+        <nav class="pills">
+          <a class="pilllink" href="../index.html">Home</a>
+          <a class="pilllink" href="../incidents.html">Incidents</a>
+          <a class="pilllink" href="../status/">Status</a>
+          <a class="pilllink" href="./">RCA</a>
+          <a class="pilllink" href="../runbooks/">Runbooks</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <h1>RCA Library</h1>
+        <p>Post-incident reviews written for humans: what happened, what changed, and how we prevent repeats.</p>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <div class="rca-split">
+            <div>
+              <h2>Reviews</h2>
+              <div class="small">Click one to open the full summary.</div>
+              <div id="rca-list" class="rca-list"></div>
+            </div>
+
+            <div>
+              <h2>Selected review</h2>
+              <div id="rca-detail" class="rca-detail">
+                <div class="notice">Pick an RCA on the left.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">Hosted on GitHub Pages • demo data only • no real systems exposed</div>
+    </main>
+  </div>
+
+  <script src="./rca.js"></script>
+</body>
+</html>
