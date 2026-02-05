@@ -1,0 +1,41 @@
+.rca-split{
+  display:grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap:14px;
+}
+@media(max-width: 980px){
+  .rca-split{ grid-template-columns: 1fr; }
+}
+
+.rca-list{
+  margin-top:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.rca-item{
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.16);
+  border-radius:18px;
+  padding:12px;
+  cursor:pointer;
+}
+.rca-item:hover{ background: rgba(255,255,255,.05); }
+.rca-item.active{ box-shadow: 0 0 0 2px rgba(255,255,255,.10) inset; }
+
+.rca-title{ font-weight:900; }
+.rca-meta{ margin-top:6px; color: rgba(255,255,255,.70); font-size:12px; }
+
+.rca-detail{
+  margin-top:12px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.14);
+  border-radius:18px;
+  padding:14px;
+}
+
+.rca-section{ margin-top:12px; }
+.rca-section h3{ margin:0 0 8px; font-size:14px; }
+.rca-text{ color: rgba(255,255,255,.80); line-height:1.5; font-size:13px; }
+.rca-bullets{ margin:8px 0 0; padding-left:18px; color: rgba(255,255,255,.78); font-size:13px; line-height:1.6; }
