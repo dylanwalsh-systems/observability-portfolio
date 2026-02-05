@@ -1,0 +1,53 @@
+[
+  {
+    "id": "rb-slow",
+    "title": "Users report slowness",
+    "tags": ["Performance", "Latency", "Customer impact"],
+    "when": "Use this when the service works, but feels slow.",
+    "goal": "Confirm the slowdown is real, determine who is affected, and reduce impact quickly.",
+    "steps": [
+      "Confirm the time window: when did users first notice it?",
+      "Check if the issue is limited (one region/site) or widespread.",
+      "Look for a clear signal: increased delay or errors during the same period.",
+      "If limited to one path/region, shift traffic or prefer the healthier route (demo: document the action).",
+      "Verify improvement: compare before vs after for at least 10 minutes.",
+      "Post a plain-English update with what users might notice and when the next update will be."
+    ],
+    "escalate": "Escalate if impact expands to multiple regions, errors rise, or performance doesn’t recover after the first mitigation attempt.",
+    "stakeholder_message": "We’re seeing slower performance for a subset of users. We’ve reduced the impact and are monitoring stability. Next update in 15 minutes."
+  },
+  {
+    "id": "rb-down",
+    "title": "Site appears unreachable",
+    "tags": ["Outage", "Connectivity", "Urgent"],
+    "when": "Use this when users cannot reach the service at all.",
+    "goal": "Confirm whether this is a real outage and restore access as fast as possible.",
+    "steps": [
+      "Confirm the symptom: can users reach the service from at least two different locations?",
+      "Identify scope: one site/region or global?",
+      "Check for a sharp spike in failures or drops.",
+      "If it’s isolated, route around the impacted segment (demo: document the decision + evidence).",
+      "If it’s widespread, escalate immediately and publish a short status notice.",
+      "Confirm recovery and keep monitoring until stable."
+    ],
+    "escalate": "Escalate immediately if the issue appears global or if multiple services are affected.",
+    "stakeholder_message": "We’re investigating an access issue affecting some users. We’re working to restore service and will provide the next update shortly."
+  },
+  {
+    "id": "rb-intermittent",
+    "title": "Intermittent failures (retries work)",
+    "tags": ["Stability", "Drops", "Noise vs signal"],
+    "when": "Use this when failures come in bursts and users can sometimes retry successfully.",
+    "goal": "Separate noise from real instability and prevent repeated customer disruption.",
+    "steps": [
+      "Confirm this is intermittent: do failures appear in bursts rather than continuous?",
+      "Determine if failures cluster around a specific site/path/route.",
+      "Check whether the failure bursts align to a change window or known event.",
+      "Apply a safe mitigation (route preference / reduce use of unstable path).",
+      "Watch for recurrence for at least 30 minutes.",
+      "Write a short RCA note if the pattern repeats."
+    ],
+    "escalate": "Escalate if bursts become continuous, or if the affected area expands beyond the initial cluster.",
+    "stakeholder_message": "We’re seeing brief, intermittent failures for a subset of users. We’ve applied a mitigation to reduce impact and are monitoring for recurrence."
+  }
+]
