@@ -36,5 +36,157 @@
       { "path": "./evidence/INC-0002/before_after.png", "caption": "Stability after mitigation" }
     ],
     "grafana": { "url": "" }
+  },
+  {
+  "id": "INC-0003",
+  "title": "Brief slowdown during peak hour",
+  "severity": "Low",
+  "status": "Resolved",
+  "where": "ATL region",
+  "start": "2026-02-05T08:10:00-05:00",
+  "end": "2026-02-05T08:22:00-05:00",
+  "customer_symptom": "A few users noticed pages loading slower than normal.",
+  "impact": "Small performance dip, limited to a short window.",
+  "findings": "A temporary congestion spike occurred during a burst of traffic. Performance returned to baseline without sustained degradation.",
+  "mitigation": "No direct intervention needed. Documented the pattern and added a watch for recurring spikes.",
+  "evidence": [
+    { "path": "./evidence/INC-0001/delay.png", "caption": "Network Delay during the incident window" },
+    { "path": "./evidence/INC-0001/affected.png", "caption": "Most affected locations/devices" },
+    { "path": "./evidence/INC-0001/before_after.png", "caption": "Before vs After comparison" }
+  ],
+  "grafana": { "url": "" }
+  },
+  {
+    "id": "INC-0004",
+    "title": "Intermittent connection failures for remote users",
+    "severity": "Medium",
+    "status": "Resolved",
+    "where": "Remote access / VPN edge",
+    "start": "2026-02-05T19:05:00-05:00",
+    "end": "2026-02-05T19:41:00-05:00",
+    "customer_symptom": "Some users could not connect; retries sometimes worked.",
+    "impact": "Intermittent access failures for a subset of users.",
+    "findings": "Failures clustered around a single edge path. The pattern matched short-lived instability rather than total outage.",
+    "mitigation": "Shifted traffic away from the unstable path and monitored until the failure rate dropped to normal.",
+    "evidence": [
+      { "path": "./evidence/INC-0002/delay.png", "caption": "Delay and drop pattern" },
+      { "path": "./evidence/INC-0002/affected.png", "caption": "Where failures clustered" },
+      { "path": "./evidence/INC-0002/before_after.png", "caption": "Stability after mitigation" }
+    ],
+    "grafana": { "url": "" }
+  },
+  {
+    "id": "INC-0005",
+    "title": "Choppy audio during conference calls",
+    "severity": "High",
+    "status": "Mitigated",
+    "where": "Voice / real-time traffic",
+    "start": "2026-02-06T11:02:00-05:00",
+    "end": "2026-02-06T11:35:00-05:00",
+    "customer_symptom": "Calls sounded robotic or cut out for some participants.",
+    "impact": "Real-time traffic quality degraded for a noticeable portion of sessions.",
+    "findings": "Packet loss increased during the window and aligned with a network event. Non-real-time traffic was less affected.",
+    "mitigation": "Adjusted routing preference to avoid the affected segment and kept a tighter watch on drop rate thresholds.",
+    "evidence": [
+      { "path": "./evidence/INC-0002/delay.png", "caption": "Drop pattern during the incident window" },
+      { "path": "./evidence/INC-0002/affected.png", "caption": "Where impact clustered" },
+      { "path": "./evidence/INC-0002/before_after.png", "caption": "Before vs After comparison" }
+    ],
+    "grafana": { "url": "" }
+  },
+  {
+    "id": "INC-0006",
+    "title": "Slow app response from Site C",
+    "severity": "Medium",
+    "status": "Resolved",
+    "where": "Site C",
+    "start": "2026-02-06T14:18:00-05:00",
+    "end": "2026-02-06T14:52:00-05:00",
+    "customer_symptom": "Users reported the app felt sluggish and actions took longer to complete.",
+    "impact": "Performance degradation for users connected through Site C.",
+    "findings": "Delay increased gradually, peaked, and then stabilized. The pattern suggested a constrained path rather than a full outage.",
+    "mitigation": "Shifted traffic and confirmed the delay returned to normal levels within the same session.",
+    "evidence": [
+      { "path": "./evidence/INC-0001/delay.png", "caption": "Network Delay during the incident window" },
+      { "path": "./evidence/INC-0001/affected.png", "caption": "Most affected locations/devices" },
+      { "path": "./evidence/INC-0001/before_after.png", "caption": "Before vs After comparison" }
+    ],
+    "grafana": { "url": "" }
+  },
+  {
+    "id": "INC-0007",
+    "title": "Short outage affecting a single region",
+    "severity": "High",
+    "status": "Resolved",
+    "where": "Region: East",
+    "start": "2026-02-07T09:31:00-05:00",
+    "end": "2026-02-07T09:44:00-05:00",
+    "customer_symptom": "Some users could not load pages at all for a few minutes.",
+    "impact": "Brief service interruption for a specific region.",
+    "findings": "A sharp failure spike occurred and recovered quickly. The impact was concentrated, which ruled out broad service failure.",
+    "mitigation": "Confirmed recovery, validated stability for 30 minutes post-event, and documented for trend tracking.",
+    "evidence": [
+      { "path": "./evidence/INC-0002/delay.png", "caption": "Failure spike during the incident window" },
+      { "path": "./evidence/INC-0002/affected.png", "caption": "Where failures clustered" },
+      { "path": "./evidence/INC-0002/before_after.png", "caption": "Recovery after the incident" }
+    ],
+    "grafana": { "url": "" }
+  },
+  {
+    "id": "INC-0008",
+    "title": "Performance degradation after a configuration change",
+    "severity": "Medium",
+    "status": "Resolved",
+    "where": "Core network path",
+    "start": "2026-02-07T20:10:00-05:00",
+    "end": "2026-02-07T20:46:00-05:00",
+    "customer_symptom": "Users noticed slow page loads shortly after a routine change window.",
+    "impact": "Noticeable slowdown across a subset of traffic.",
+    "findings": "Timing aligned closely with a change window and the degradation pattern was consistent until rollback.",
+    "mitigation": "Rolled back the change and confirmed performance returned to baseline.",
+    "evidence": [
+      { "path": "./evidence/INC-0001/delay.png", "caption": "Delay increase aligned to the change window" },
+      { "path": "./evidence/INC-0001/affected.png", "caption": "Areas/devices with highest impact" },
+      { "path": "./evidence/INC-0001/before_after.png", "caption": "Before vs After rollback" }
+    ],
+    "grafana": { "url": "" }
+  },
+  {
+    "id": "INC-0009",
+    "title": "Intermittent packet loss on backup route",
+    "severity": "Low",
+    "status": "Monitoring",
+    "where": "Backup route",
+    "start": "2026-02-08T13:05:00-05:00",
+    "end": "2026-02-08T13:55:00-05:00",
+    "customer_symptom": "Most users were fine, but a few saw occasional hiccups.",
+    "impact": "Minor intermittent impact, mostly masked by failover behavior.",
+    "findings": "Loss appeared in bursts on the backup path. Primary path remained healthy, indicating localized instability.",
+    "mitigation": "Kept traffic primarily on the stable route and opened monitoring for recurrence during peak periods.",
+    "evidence": [
+      { "path": "./evidence/INC-0002/delay.png", "caption": "Intermittent loss bursts" },
+      { "path": "./evidence/INC-0002/affected.png", "caption": "Where failures clustered" },
+      { "path": "./evidence/INC-0002/before_after.png", "caption": "Stability comparison" }
+    ],
+    "grafana": { "url": "" }
+  },
+  {
+    "id": "INC-0010",
+    "title": "Elevated delay for international traffic",
+    "severity": "Medium",
+    "status": "Resolved",
+    "where": "International routing",
+    "start": "2026-02-09T07:25:00-05:00",
+    "end": "2026-02-09T08:05:00-05:00",
+    "customer_symptom": "International users reported slow responses compared to normal.",
+    "impact": "Higher response times for users outside the primary region.",
+    "findings": "Delay increased on international routes while local traffic remained normal, pointing to upstream routing conditions.",
+    "mitigation": "Adjusted routing preference where possible and confirmed the delay returned to normal levels.",
+    "evidence": [
+      { "path": "./evidence/INC-0001/delay.png", "caption": "Delay trend for international routes" },
+      { "path": "./evidence/INC-0001/affected.png", "caption": "Most affected locations" },
+      { "path": "./evidence/INC-0001/before_after.png", "caption": "Before vs After improvement" }
+    ],
+    "grafana": { "url": "" }
   }
 ]
