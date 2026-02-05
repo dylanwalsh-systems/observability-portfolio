@@ -1,50 +1,76 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Incidents • Operations Console</title>
   <link rel="stylesheet" href="./assets/style.css" />
-  <script defer src="./assets/app.js"></script>
 </head>
 <body>
-  <div class="container">
-    <div class="nav">
-      <div class="brand"><span class="dot"></span> Operations Console (Demo)</div>
-      <div class="navlinks">
-        <a href="./index.html">Home</a>
-        <a href="./incidents.html">Incidents</a>
-        <a href="./how-it-works.html">How it works</a>
-      </div>
-    </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">OC</div>
 
-    <div class="hero">
-      <h1>Incidents Inbox</h1>
-      <p>Pick an incident. Everything is translated into plain English.</p>
-    </div>
+      <a class="sidebtn" href="./index.html" title="Home" aria-label="Home">🏠</a>
+      <a class="sidebtn" href="./incidents.html" title="Incidents" aria-label="Incidents">🧾</a>
+      <a class="sidebtn" href="./how-it-works.html" title="How it works" aria-label="How it works">🧠</a>
+    </aside>
 
-    <div class="card">
-      <h2>Open Incidents</h2>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Severity</th>
-            <th>Summary</th>
-            <th>Where</th>
-            <th>When</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="incidents-tbody"></tbody>
-      </table>
+    <main class="main">
+      <header class="topbar">
+        <div class="brand"><span class="dot"></span> Operations Console (Demo)</div>
+        <nav class="pills">
+          <a class="pilllink" href="./index.html">Home</a>
+          <a class="pilllink" href="./incidents.html">Incidents</a>
+          <a class="pilllink" href="./how-it-works.html">How it works</a>
+        </nav>
+      </header>
 
-      <div class="small" style="margin-top:10px">
-        If this table is empty, it means <code>/docs/data/incidents.json</code> is missing or blank.
-      </div>
-    </div>
+      <section class="hero">
+        <h1>Incidents Inbox</h1>
+        <p>Pick an incident. Everything is written in plain English and backed by evidence screenshots.</p>
+      </section>
 
-    <div class="footer">Edit demo incidents in <code>/docs/data/incidents.json</code></div>
+      <section class="grid">
+        <div class="card">
+          <h2>Open Incidents</h2>
+          <div class="small">If this table is empty, the site could not load <code>/data/incidents.json</code>.</div>
+
+          <table class="table" aria-label="Incidents table">
+            <thead>
+              <tr>
+                <th>Severity</th>
+                <th>Summary</th>
+                <th>Where</th>
+                <th>When</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="incidents-tbody">
+              <tr>
+                <td colspan="5" class="small">Loading incidents…</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="small" style="margin-top:10px;">
+            Edit demo incidents in <code>/docs/data/incidents.json</code>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">Hosted on GitHub Pages • demo data only • no real systems exposed</div>
+    </main>
   </div>
+
+  <script src="./assets/app.js"></script>
+  <script>
+    (function () {
+      const path = location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.sidebtn').forEach(a => {
+        if (a.getAttribute('href') && a.getAttribute('href').endsWith(path)) a.classList.add('active');
+      });
+    })();
+  </script>
 </body>
 </html>
-
