@@ -1,0 +1,85 @@
+.status-banner{
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:18px;
+  padding:14px;
+  background: rgba(255,255,255,.06);
+}
+
+.banner-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.banner-title{
+  font-weight:900;
+  font-size:16px;
+}
+
+.banner-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.18);
+  font-size:12px;
+  color: rgba(255,255,255,.86);
+}
+
+.dot-mini{width:10px;height:10px;border-radius:50%}
+.dot-green{background: var(--good)}
+.dot-yellow{background: var(--warn)}
+.dot-red{background: var(--bad)}
+
+.svc-grid{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap:12px;
+}
+.svc{
+  grid-column: span 12;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  background: rgba(0,0,0,.16);
+  padding:12px;
+}
+@media(min-width: 900px){
+  .svc{ grid-column: span 4; }
+}
+.svc-name{font-weight:900}
+.svc-sub{margin-top:6px; color: rgba(255,255,255,.72); font-size:12px; line-height:1.45}
+.svc-meta{margin-top:10px; display:flex; gap:8px; flex-wrap:wrap}
+.chip{
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.76);
+  background: rgba(255,255,255,.04);
+}
+
+.updates{
+  margin-top:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.update{
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.16);
+  border-radius:18px;
+  padding:12px;
+}
+.update-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.update-time{color: rgba(255,255,255,.65); font-size:12px}
+.update-text{margin-top:8px; color: rgba(255,255,255,.82); line-height:1.45}
