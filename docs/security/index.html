@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cyber Security Analysis • Operations Console</title>
+
+  <!-- Your main site UI -->
+  <link rel="stylesheet" href="../assets/style.css" />
+
+  <!-- Security page UI (self-contained styling for the dashboard pieces) -->
+  <link rel="stylesheet" href="./security.css" />
+</head>
+
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">OC</div>
+
+      <a class="sidebtn" href="../index.html" title="Home" aria-label="Home">🏠</a>
+      <a class="sidebtn" href="../incidents.html" title="Incidents" aria-label="Incidents">🧾</a>
+      <a class="sidebtn" href="../how-it-works.html" title="How it works" aria-label="How it works">🧠</a>
+      <a class="sidebtn active" href="./index.html" title="Security" aria-label="Security">🛡️</a>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="brand"><span class="dot"></span> Operations Console (Demo)</div>
+        <nav class="pills">
+          <a class="pilllink" href="../index.html">Home</a>
+          <a class="pilllink" href="../incidents.html">Incidents</a>
+          <a class="pilllink" href="../how-it-works.html">How it works</a>
+          <a class="pilllink" href="./index.html">Security</a>
+        </nav>
+      </header>
+
+      <!-- Security page content -->
+      <div class="sec-page">
+        <header class="sec-topbar">
+          <div class="sec-title-wrap">
+            <div class="sec-kicker">Portfolio • Security</div>
+            <h1>Cyber Security Analysis</h1>
+            <p class="sec-subtitle">Operational Risk • Detection • Tradeoffs</p>
+          </div>
+
+          <div class="sec-badges">
+            <span class="sec-badge b-blue">Read-Only Demo</span>
+            <span class="sec-badge b-amber">Public Surface</span>
+            <span class="sec-badge b-green">Low Sensitivity</span>
+          </div>
+        </header>
+
+        <!-- Overview cards -->
+        <section class="sec-grid sec-grid-4">
+          <article class="sec-card">
+            <div class="sec-card-head">
+              <div class="sec-card-title">System Boundary</div>
+              <div class="sec-pill p-blue">Scope</div>
+            </div>
+            <ul class="sec-bullets">
+              <li>Static frontend (GitHub Pages)</li>
+              <li>No authentication (by design)</li>
+              <li>No write operations</li>
+            </ul>
+          </article>
+
+          <article class="sec-card">
+            <div class="sec-card-head">
+              <div class="sec-card-title">Data Sensitivity</div>
+              <div class="sec-pill p-green">Low</div>
+            </div>
+            <ul class="sec-bullets">
+              <li>Synthetic incident/security data</li>
+              <li>No secrets stored client-side</li>
+              <li>No PII expected</li>
+            </ul>
+          </article>
+
+          <article class="sec-card">
+            <div class="sec-card-head">
+              <div class="sec-card-title">Primary Risks</div>
+              <div class="sec-pill p-amber">Monitor</div>
+            </div>
+            <ul class="sec-bullets">
+              <li>Abuse / scraping</li>
+              <li>Noise / false signals</li>
+              <li>Denial-of-service (request bursts)</li>
+            </ul>
+          </article>
+
+          <article class="sec-card">
+            <div class="sec-card-head">
+              <div class="sec-card-title">Out of Scope</div>
+              <div class="sec-pill p-red">N/A</div>
+            </div>
+            <ul class="sec-bullets">
+              <li>Account takeover / auth bypass</li>
+              <li>Privilege escalation</li>
+              <li>Data exfiltration (no sensitive data)</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- Threats + Attack Surface -->
+        <section class="sec-grid sec-grid-2 sec-gap-lg">
+          <article class="sec-card">
+            <div class="sec-card-head">
+              <div class="sec-card-title">Threat Model</div>
+              <div class="sec-hint">STRIDE-inspired, practical</div>
+            </div>
+
+            <div class="sec-table-wrap">
+              <table class="sec-table" id="threatTable">
+                <thead>
+                  <tr>
+                    <th>Vector</th>
+                    <th>Threat</th>
+                    <th>Risk</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td colspan="4" class="sec-muted">Loading threat data…</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="sec-card">
+            <div class="sec-card-head">
+              <div class="sec-card-title">Attack Surface</div>
+              <div class="sec-hint">Where risk can enter</div>
+            </div>
+
+            <div class="sec-stack" id="surfaceCards">
+              <div class="sec-surface-card">
+                <div class="sec-surface-title">Public Endpoints</div>
+                <div class="sec-surface-meta">
+                  <span class="sec-chip">Exposure: Anonymous</span>
+                  <span class="sec-chip">Control: Rate limiting (recommended)</span>
+                </div>
+                <div class="sec-surface-desc">Requests can be spammed; controls focus on limiting abuse and maintaining signal fidelity.</div>
+              </div>
+
+              <div class="sec-surface-card">
+                <div class="sec-surface-title">Static Data Files</div>
+                <div class="sec-surface-meta">
+                  <span class="sec-chip">Exposure: Read-only</span>
+                  <span class="sec-chip">Control: No secrets stored</span>
+                </div>
+                <div class="sec-surface-desc">Data is intentionally non-sensitive and static, making integrity concerns primarily reputational.</div>
+              </div>
+
+              <div class="sec-surface-card">
+                <div class="sec-surface-title">Client Rendering</div>
+                <div class="sec-surface-meta">
+                  <span class="sec-chip">Exposure: DOM / UI</span>
+                  <span class="sec-chip">Control: Strict rendering + escaping</span>
+                </div>
+                <div class="sec-surface-desc">Avoid unsafe HTML injection; render as text and validate schema before display.</div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- Monitoring -->
+        <section class="sec-grid sec-grid-2 sec-gap-lg">
+          <article class="sec-card">
+            <div class="sec-card-head">
+              <div class="sec-card-title">Detection & Monitoring</div>
+              <div class="sec-hint">Observability-first security</div>
+            </div>
+
+            <div class="sec-kpi-grid" id="kpiGrid">
+              <div class="sec-kpi"><div class="sec-kpi-label">Req/min</div><div class="sec-kpi-value">—</div><div class="sec-kpi-sub sec-muted">baseline</div></div>
+              <div class="sec-kpi"><div class="sec-kpi-label">4xx rate</div><div class="sec-kpi-value">—</div><div class="sec-kpi-sub sec-muted">invalid requests</div></div>
+              <div class="sec-kpi"><div class="sec-kpi-label">Anomaly score</div><div class="sec-kpi-value">—</div><div class="sec-kpi-sub sec-muted">burst detection</div></div>
+              <div class="sec-kpi"><div class="sec-kpi-label">Signal confidence</div><div class="sec-kpi-value">—</div><div class="sec-kpi-sub sec-muted">noise filter</div></div>
+            </div>
+
+            <div class="sec-divider"></div>
+
+            <div class="sec-signals">
+              <div class="sec-signals-title">Signals Tracked</div>
+              <ul class="sec-bullets">
+                <li>Request bursts (DoS-like patterns)</li>
+                <li>Repeated malformed payload attempts</li>
+                <li>Unusual 4xx/5xx ratios (noise vs breakage)</li>
+                <li>Suspicious repetition patterns (scraping / probing)</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="sec-card">
+            <div class="sec-card-head">
+              <div class="sec-card-title">Risk Matrix</div>
+              <div class="sec-hint">Likelihood × Impact</div>
+            </div>
+
+            <div class="sec-matrix">
+              <div class="sec-m-head"></div>
+              <div class="sec-m-head">Low</div>
+              <div class="sec-m-head">Med</div>
+              <div class="sec-m-head">High</div>
+
+              <div class="sec-m-side">High</div>
+              <div class="sec-cell c-amber">🟡</div>
+              <div class="sec-cell c-red">🔴</div>
+              <div class="sec-cell c-red">🔴</div>
+
+              <div class="sec-m-side">Med</div>
+              <div class="sec-cell c-green">🟢</div>
+              <div class="sec-cell c-amber">🟡</div>
+              <div class="sec-cell c-red">🔴</div>
+
+              <div class="sec-m-side">Low</div>
+              <div class="sec-cell c-green">🟢</div>
+              <div class="sec-cell c-green">🟢</div>
+              <div class="sec-cell c-amber">🟡</div>
+            </div>
+
+            <p class="sec-muted sec-small" style="margin-top:12px;">
+              Green = accepted (design-limited risk). Yellow = monitored. Red = mitigated or avoided.
+            </p>
+          </article>
+        </section>
+
+        <!-- IR Flow -->
+        <section class="sec-card sec-flow-card">
+          <div class="sec-card-head">
+            <div class="sec-card-title">Incident Response Flow</div>
+            <div class="sec-hint">Clear path: Alert → Triage → Validate → Contain → Learn</div>
+          </div>
+
+          <div class="sec-flow">
+            <button class="sec-flow-node" data-step="alert">
+              <div class="sec-node-title">Alert</div>
+              <div class="sec-node-sub">Trigger + severity</div>
+            </button>
+
+            <div class="sec-arrow">→</div>
+
+            <button class="sec-flow-node" data-step="triage">
+              <div class="sec-node-title">Triage</div>
+              <div class="sec-node-sub">Noise vs signal</div>
+            </button>
+
+            <div class="sec-arrow">→</div>
+
+            <button class="sec-flow-node" data-step="validate">
+              <div class="sec-node-title">Validate</div>
+              <div class="sec-node-sub">Logs + context</div>
+            </button>
+
+            <div class="sec-arrow">→</div>
+
+            <button class="sec-flow-node" data-step="contain">
+              <div class="sec-node-title">Contain</div>
+              <div class="sec-node-sub">Guardrails</div>
+            </button>
+
+            <div class="sec-arrow">→</div>
+
+            <button class="sec-flow-node" data-step="learn">
+              <div class="sec-node-title">Learn</div>
+              <div class="sec-node-sub">Tuning + prevention</div>
+            </button>
+          </div>
+
+          <div class="sec-flow-detail" id="flowDetail">
+            <div class="sec-muted">Click a step to view details.</div>
+          </div>
+        </section>
+
+        <!-- Decisions log -->
+        <section class="sec-card">
+          <div class="sec-card-head">
+            <div class="sec-card-title">Security Decisions & Tradeoffs</div>
+            <div class="sec-hint">ISSO-style decision log</div>
+          </div>
+
+          <div class="sec-timeline" id="decisionTimeline">
+            <div class="sec-muted">Loading decision log…</div>
+          </div>
+        </section>
+
+        <div class="footer">Hosted on GitHub Pages • demo data only • no real systems exposed</div>
+      </div>
+
+      <script src="./security.js"></script>
+    </main>
+  </div>
+</body>
+</html>
