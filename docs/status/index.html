@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Status • Operations Console</title>
+
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="stylesheet" href="./status.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">OC</div>
+
+      <a class="sidebtn" href="../index.html" title="Home" aria-label="Home">🏠</a>
+      <a class="sidebtn" href="../incidents.html" title="Incidents" aria-label="Incidents">🧾</a>
+      <a class="sidebtn" href="../security/" title="Security" aria-label="Security">🛡️</a>
+      <a class="sidebtn active" href="./" title="Status" aria-label="Status">🟢</a>
+      <a class="sidebtn" href="../rca/" title="RCA Library" aria-label="RCA Library">🧩</a>
+      <a class="sidebtn" href="../runbooks/" title="Runbooks" aria-label="Runbooks">📘</a>
+      <a class="sidebtn" href="../how-it-works.html" title="How it works" aria-label="How it works">🧠</a>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="brand"><span class="dot"></span> Operations Console (Demo)</div>
+        <nav class="pills">
+          <a class="pilllink" href="../index.html">Home</a>
+          <a class="pilllink" href="../incidents.html">Incidents</a>
+          <a class="pilllink" href="../security/">Security</a>
+          <a class="pilllink" href="./">Status</a>
+          <a class="pilllink" href="../rca/">RCA</a>
+          <a class="pilllink" href="../runbooks/">Runbooks</a>
+          <a class="pilllink" href="../how-it-works.html">How it works</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <h1>Status</h1>
+        <p>
+          A stakeholder-friendly view: what’s working, what’s degraded, and what we’re doing about it.
+        </p>
+        <div class="btnrow">
+          <button class="btn primary" id="btn-refresh">Refresh</button>
+          <a class="btn" href="../incidents.html">Open Incident Inbox</a>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="card span6">
+          <h2>Current message</h2>
+          <div id="status-banner" class="status-banner">
+            <div class="small">Loading…</div>
+          </div>
+          <div class="small" id="status-meta" style="margin-top:10px;"></div>
+        </div>
+
+        <div class="card span6">
+          <h2>What to tell customers</h2>
+          <div class="notice" id="customer-message">Loading…</div>
+          <div class="btnrow" style="margin-top:10px;">
+            <button class="btn" id="btn-copy-update">Copy customer update</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Services</h2>
+          <div class="small">Green = normal. Yellow = degraded. Red = outage.</div>
+          <div class="svc-grid" id="services-grid">
+            <div class="small">Loading services…</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Recent updates</h2>
+          <div class="small">Short, timestamped updates for non-technical readers.</div>
+          <div class="updates" id="updates"></div>
+        </div>
+      </section>
+
+      <div class="footer">Hosted on GitHub Pages • demo data only • no real systems exposed</div>
+    </main>
+  </div>
+
+  <script src="./status.js"></script>
+</body>
+</html>
