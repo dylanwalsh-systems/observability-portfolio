@@ -1,51 +1,113 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Observability Demo</title>
+  <title>Operations Console (Demo)</title>
   <link rel="stylesheet" href="./assets/style.css" />
 </head>
 <body>
-  <div class="container">
-    <div class="nav">
-      <div class="brand"><span class="dot"></span> Operations Console (Demo)</div>
-      <div class="navlinks">
-        <a href="./index.html">Home</a>
-        <a href="./incidents.html">Incidents</a>
-        <a href="./how-it-works.html">How it works</a>
-      </div>
-    </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">OC</div>
 
-    <div class="hero">
-      <h1>Incident response — explained like you’re not an engineer.</h1>
-      <p>
-        Click an incident. See what users felt, what we found, and the evidence.
-        Generate a ticket update with one button.
-      </p>
-      <div class="btnrow">
-        <a class="btn primary" href="./incidents.html">Open Incidents Inbox</a>
-        <a class="btn" href="./how-it-works.html">See How It Works</a>
-      </div>
-    </div>
+      <a class="sidebtn" href="./index.html" title="Home" aria-label="Home">🏠</a>
+      <a class="sidebtn" href="./incidents.html" title="Incidents" aria-label="Incidents">🧾</a>
+      <a class="sidebtn" href="./how-it-works.html" title="How it works" aria-label="How it works">🧠</a>
+    </aside>
 
-    <div class="grid">
-      <div class="card span6">
-        <h2>What you can click</h2>
-        <div class="small">
-          Incidents → plain-English details → evidence images → download a ticket.
+    <main class="main">
+      <header class="topbar">
+        <div class="brand"><span class="dot"></span> Operations Console (Demo)</div>
+        <nav class="pills">
+          <a class="pilllink" href="./index.html">Home</a>
+          <a class="pilllink" href="./incidents.html">Incidents</a>
+          <a class="pilllink" href="./how-it-works.html">How it works</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <h1>Observability Portfolio Demo</h1>
+        <p>
+          This is a safe, click-through demo that shows how an incident can be explained in plain English,
+          with evidence screenshots and a simple timeline — the way a non-technical stakeholder would want it.
+        </p>
+
+        <div class="btnrow">
+          <a class="btn primary" href="./incidents.html">Open Incidents Inbox</a>
+          <a class="btn" href="./how-it-works.html">How this demo works</a>
+          <a class="btn" href="https://github.com/dylanwalsh-systems/observability-portfolio" target="_blank" rel="noopener">
+            View Code
+          </a>
         </div>
-      </div>
-      <div class="card span6">
-        <h2>Live View (Grafana)</h2>
-        <div class="small">
-          Optional. If you later add a Grafana link, each incident can open the exact time window automatically.
-        </div>
-      </div>
-    </div>
+      </section>
 
-    <div class="footer">Hosted on GitHub Pages • safe demo data only</div>
+      <section class="grid">
+        <div class="card span6">
+          <h2>What you can do here</h2>
+          <p class="small">
+            Click into an incident and see: what users felt, where it happened, what we found, what we did,
+            and evidence screenshots. Then download a “ticket” or copy an email update.
+          </p>
+          <div class="btnrow">
+            <a class="btn primary" href="./incidents.html">Go to Incidents</a>
+          </div>
+        </div>
+
+        <div class="card span6">
+          <h2>What this demonstrates</h2>
+          <ul class="small" style="margin:0; padding-left:18px; line-height:1.7;">
+            <li>Turning raw monitoring signals into clear, human-readable updates</li>
+            <li>Consistent incident summaries and timelines</li>
+            <li>Evidence packaging (screenshots + before/after comparison)</li>
+            <li>Repeatable workflow that scales beyond one-off troubleshooting</li>
+          </ul>
+        </div>
+
+        <div class="card span4">
+          <h2>Incidents</h2>
+          <p class="small">A demo “inbox” of open/closed incidents with one-click detail view.</p>
+          <div class="btnrow">
+            <a class="btn primary" href="./incidents.html">Open Inbox</a>
+          </div>
+        </div>
+
+        <div class="card span4">
+          <h2>Evidence</h2>
+          <p class="small">Each incident includes three screenshots: symptom, impacted area, and before/after.</p>
+          <div class="btnrow">
+            <a class="btn" href="./incidents.html">View examples</a>
+          </div>
+        </div>
+
+        <div class="card span4">
+          <h2>Plain English</h2>
+          <p class="small">Designed so anyone can understand what happened without technical background.</p>
+          <div class="btnrow">
+            <a class="btn" href="./how-it-works.html">Read the flow</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">Hosted on GitHub Pages • demo data only • no real systems exposed</div>
+    </main>
   </div>
+
+  <script>
+    // Highlight active sidebar icon
+    (function () {
+      const path = location.pathname.split('/').pop() || 'index.html';
+      const map = { 'index.html': '🏠', 'incidents.html': '🧾', 'how-it-works.html': '🧠', 'incident.html': '🧾' };
+      document.querySelectorAll('.sidebtn').forEach(a => {
+        if (a.getAttribute('href') && a.getAttribute('href').endsWith(path)) a.classList.add('active');
+      });
+      // Special case: incident.html should highlight Incidents icon
+      if (path === 'incident.html') {
+        document.querySelectorAll('.sidebtn').forEach(a => {
+          if (a.getAttribute('href') && a.getAttribute('href').endsWith('incidents.html')) a.classList.add('active');
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
-
