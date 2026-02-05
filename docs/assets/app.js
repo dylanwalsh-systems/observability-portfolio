@@ -1,5 +1,5 @@
 async function loadIncidents() {
-  const res = await fetch('./data/incidents.json');
+  const res = await fetch(`./data/incidents.json?v=${Date.now()}`, { cache: "no-store" });
   if (!res.ok) throw new Error('Failed to load incidents.json');
   return await res.json();
 }
@@ -17,14 +17,10 @@ function severityPill(sev) {
 }
 
 function formatWhen(isoStart, isoEnd) {
-  try {
-    const s = new Date(isoStart);
-    const e = new Date(isoEnd);
-    const opts = { year:'numeric', month:'short', day:'2-digit', hour:'2-digit', minute:'2-digit' };
-    return `${s.toLocaleString(undefined, opts)} → ${e.toLocaleString(undefined, opts)}`;
-  } catch {
-    return `${isoStart} → ${isoEnd}`;
-  }
+  const s = new Date(isoStart);
+  const e = new Date(isoEnd);
+  const opts = { year:'numeric', month:'short', day:'2-digit', hour:'2-digit', minute:'2-digit' };
+  return `${s.toLocaleString(undefined, opts)} → ${e.toLocaleString(undefined, opts)}`;
 }
 
 function downloadText(filename, text) {
@@ -61,7 +57,7 @@ async function renderIncidentsTable() {
           ${inc.severity || 'Low'}
         </div>
       </td>
-      <td><strong>${inc.title}</strong><div class="small">${inc.customer_symptom || ''}</div></td>
+      <td><strong>${inc.title || inc.id}</strong><div class="small">${inc.customer_symptom || ''}</div></td>
       <td>${inc.where || '-'}</td>
       <td>${formatWhen(inc.start, inc.end)}</td>
       <td><a class="btn primary" href="./incident.html?id=${encodeURIComponent(inc.id)}">Open</a></td>
@@ -97,7 +93,7 @@ async function renderIncidentDetail() {
   root.innerHTML = `
     <div class="card">
       <div class="badge"><span class="pill ${severityPill(inc.severity)}"></span>${inc.severity || 'Low'} severity</div>
-      <h1 style="margin:10px 0 6px">${inc.title}</h1>
+      <h1 style="margin:10px 0 6px">${inc.title || inc.id}</h1>
       <div class="small">${inc.customer_symptom || ''}</div>
 
       <div class="kv">
@@ -125,7 +121,7 @@ async function renderIncidentDetail() {
       <h2>Evidence</h2>
       <div class="small">Charts and comparisons captured for non-technical review.</div>
       <div class="gallery">
-        ${evidence || `<div class="notice">No evidence images linked yet. Add images under /docs/evidence/${inc.id}/ and update incidents.json.</div>`}
+        ${evidence || `<div class="notice">No evidence images linked yet.</div>`}
       </div>
     </div>
   `;
@@ -174,15 +170,12 @@ ${live ? `Live View: ${live}` : ''}
 
 Thanks,
 `;
-    try {
-      await navigator.clipboard.writeText(text);
-      alert('Email update copied to clipboard.');
-    } catch {
-      alert('Could not copy automatically. Try on GitHub Pages (not local file).');
-    }
+    await navigator.clipboard.writeText(text);
+    alert('Email update copied to clipboard.');
   });
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    awa
+document.addEventListener('DOMContentLoaded', () => {
+  renderIncidentsTable().catch(console.error);
+  renderIncidentDetail().catch(console.error);
+});
