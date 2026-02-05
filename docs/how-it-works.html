@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -7,42 +7,89 @@
   <link rel="stylesheet" href="./assets/style.css" />
 </head>
 <body>
-  <div class="container">
-    <div class="nav">
-      <div class="brand"><span class="dot"></span> Operations Console (Demo)</div>
-      <div class="navlinks">
-        <a href="./index.html">Home</a>
-        <a href="./incidents.html">Incidents</a>
-        <a href="./how-it-works.html">How it works</a>
-      </div>
-    </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">OC</div>
 
-    <div class="hero">
-      <h1>How this demo works</h1>
-      <p>A simple flow: alert → impact → evidence → stakeholder update.</p>
-    </div>
+      <a class="sidebtn" href="./index.html" title="Home" aria-label="Home">🏠</a>
+      <a class="sidebtn" href="./incidents.html" title="Incidents" aria-label="Incidents">🧾</a>
+      <a class="sidebtn" href="./how-it-works.html" title="How it works" aria-label="How it works">🧠</a>
+    </aside>
 
-    <div class="grid">
-      <div class="card span6">
-        <h2>1) Alert appears</h2>
-        <div class="small">Monitoring detects unusual behavior for a specific time window.</div>
-      </div>
-      <div class="card span6">
-        <h2>2) Confirm impact</h2>
-        <div class="small">We open Live View to confirm what users experienced and where.</div>
-      </div>
-      <div class="card span6">
-        <h2>3) Collect evidence</h2>
-        <div class="small">Charts and comparisons get captured for quick review.</div>
-      </div>
-      <div class="card span6">
-        <h2>4) Communicate</h2>
-        <div class="small">A ticket + email update is generated in plain English.</div>
-      </div>
-    </div>
+    <main class="main">
+      <header class="topbar">
+        <div class="brand"><span class="dot"></span> Operations Console (Demo)</div>
+        <nav class="pills">
+          <a class="pilllink" href="./index.html">Home</a>
+          <a class="pilllink" href="./incidents.html">Incidents</a>
+          <a class="pilllink" href="./how-it-works.html">How it works</a>
+        </nav>
+      </header>
 
-    <div class="footer">This is static and safe to share publicly.</div>
+      <section class="hero">
+        <h1>How this demo works</h1>
+        <p>
+          This project demonstrates a simple, repeatable incident workflow —
+          focusing on clear communication, evidence, and consistency.
+        </p>
+      </section>
+
+      <section class="grid">
+        <div class="card span6">
+          <h2>1) A signal appears</h2>
+          <p class="small">
+            Monitoring detects a change (for example: delay or dropped traffic).
+            The goal isn’t just to “show graphs” — it’s to turn the signal into a clear story.
+          </p>
+        </div>
+
+        <div class="card span6">
+          <h2>2) We translate it into plain English</h2>
+          <p class="small">
+            Each incident answers: what users felt, where it happened, and what the impact looked like
+            — without requiring technical knowledge.
+          </p>
+        </div>
+
+        <div class="card span6">
+          <h2>3) Evidence is captured</h2>
+          <p class="small">
+            Each incident includes three screenshots:
+            (1) symptom chart, (2) where it hit, (3) before/after comparison.
+          </p>
+        </div>
+
+        <div class="card span6">
+          <h2>4) Timeline + update output</h2>
+          <p class="small">
+            Incidents include a simple timeline and buttons to download a ticket
+            or copy an email update — because communication is part of reliability.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Try it</h2>
+          <p class="small">
+            Open the incidents inbox and click into any incident. Everything you see is safe demo data.
+          </p>
+          <div class="btnrow">
+            <a class="btn primary" href="./incidents.html">Open Incidents Inbox</a>
+            <a class="btn" href="./index.html">Back to Home</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">Hosted on GitHub Pages • demo data only • no real systems exposed</div>
+    </main>
   </div>
+
+  <script>
+    (function () {
+      const path = location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.sidebtn').forEach(a => {
+        if (a.getAttribute('href') && a.getAttribute('href').endsWith(path)) a.classList.add('active');
+      });
+    })();
+  </script>
 </body>
 </html>
-
