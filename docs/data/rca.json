@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Latency spike caused partial slowdown",
+    "date": "2026-02-05",
+    "severity": "High",
+    "tag": "Network performance",
+    "related_incident": "INC-0001",
+    "what_happened": "A major path experienced elevated delay for a short window. Users could still use the service, but it felt slow.",
+    "impact": "About 18% of sessions experienced noticeable slowdown for ~16 minutes.",
+    "root_cause": "A single route became congested. The system did not fail over quickly enough to avoid customer impact.",
+    "changes": [
+      "Adjusted routing preference to avoid the degraded path faster",
+      "Added an early-warning alert for rising delay before users feel it"
+    ],
+    "prevention": [
+      "Automated “traffic shift” recommendation when delay thresholds are breached",
+      "Tighter monitoring during peak hours"
+    ]
+  },
+  {
+    "title": "Intermittent drops from one edge path",
+    "date": "2026-02-03",
+    "severity": "Medium",
+    "tag": "Stability",
+    "related_incident": "INC-0002",
+    "what_happened": "Some users couldn’t load pages briefly. Retrying often worked, which pointed to intermittent instability rather than a total outage.",
+    "impact": "Short bursts of failures for ~25 minutes affecting a subset of users.",
+    "root_cause": "An edge connection showed short flaps that caused brief traffic drops.",
+    "changes": [
+      "Improved detection for short bursts (not just long outages)",
+      "Added a runbook decision point: 'Is this intermittent or sustained?'"
+    ],
+    "prevention": [
+      "Watchlist for repeat flaps and threshold tuning",
+      "Better communication cadence during intermittent events"
+    ]
+  }
+]
