@@ -1,0 +1,39 @@
+{
+  "last_updated": "2026-02-05 10:30 ET",
+  "next_update": "2026-02-05 10:45 ET",
+  "banner": {
+    "state": "degraded",
+    "title": "Elevated latency in one region",
+    "body": "Some users may notice slower responses. The service is still usable, but performance is below normal in a limited area."
+  },
+  "customer_message": "We’re seeing slower performance for a subset of users. We’ve reduced the impact and are continuing to monitor. Next update in 15 minutes.",
+  "services": [
+    {
+      "name": "Customer App",
+      "status": "degraded",
+      "summary": "Slower responses for some users in one region.",
+      "impact": "Some users",
+      "owner": "SRE",
+      "link": "../incidents.html"
+    },
+    {
+      "name": "API",
+      "status": "operational",
+      "summary": "Normal performance.",
+      "impact": "None",
+      "owner": "Platform"
+    },
+    {
+      "name": "Voice / Real-Time",
+      "status": "operational",
+      "summary": "Normal performance.",
+      "impact": "None",
+      "owner": "Network"
+    }
+  ],
+  "updates": [
+    { "time": "10:12 ET", "level": "medium", "text": "Alert triggered for elevated delay. Confirming scope and impact." },
+    { "time": "10:18 ET", "level": "medium", "text": "Impact appears limited to one route. Traffic adjustments in progress." },
+    { "time": "10:28 ET", "level": "low", "text": "Performance improving. Continuing watch for stability." }
+  ]
+}
