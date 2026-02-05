@@ -1,26 +1,60 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Incident • Operations Console</title>
   <link rel="stylesheet" href="./assets/style.css" />
-  <script defer src="./assets/app.js"></script>
 </head>
 <body>
-  <div class="container">
-    <div class="nav">
-      <div class="brand"><span class="dot"></span> Operations Console (Demo)</div>
-      <div class="navlinks">
-        <a href="./incidents.html">← Back to Incidents</a>
-        <a href="./how-it-works.html">How it works</a>
-      </div>
-    </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">OC</div>
 
-    <div id="incident-root" class="grid" style="margin-top:16px"></div>
+      <a class="sidebtn" href="./index.html" title="Home" aria-label="Home">🏠</a>
+      <a class="sidebtn" href="./incidents.html" title="Incidents" aria-label="Incidents">🧾</a>
+      <a class="sidebtn" href="./how-it-works.html" title="How it works" aria-label="How it works">🧠</a>
+    </aside>
 
-    <div class="footer">Ticket + email are generated locally in your browser.</div>
+    <main class="main">
+      <header class="topbar">
+        <div class="brand"><span class="dot"></span> Operations Console (Demo)</div>
+        <nav class="pills">
+          <a class="pilllink" href="./index.html">Home</a>
+          <a class="pilllink" href="./incidents.html">Incidents</a>
+          <a class="pilllink" href="./how-it-works.html">How it works</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <h1>Incident Detail</h1>
+        <p>Plain-English summary + timeline + evidence screenshots.</p>
+        <div class="btnrow">
+          <a class="btn" href="./incidents.html">← Back to Inbox</a>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div id="incident-root" class="card">
+          <h2>Loading…</h2>
+          <p class="small">If this never loads, the page couldn’t read the incident data.</p>
+        </div>
+      </section>
+
+      <div class="footer">Hosted on GitHub Pages • demo data only • no real systems exposed</div>
+    </main>
   </div>
+
+  <script src="./assets/app.js"></script>
+  <script>
+    // Highlight Incidents icon while on a single incident page
+    (function () {
+      document.querySelectorAll('.sidebtn').forEach(a => {
+        if (a.getAttribute('href') && a.getAttribute('href').endsWith('incidents.html')) {
+          a.classList.add('active');
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
-
