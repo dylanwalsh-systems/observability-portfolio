@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Workflow Walkthrough • Operations Console (Demo)</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="stylesheet" href="./workflow.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">OC</div>
+
+      <a class="sidebtn" href="../index.html" title="Home" aria-label="Home">🏠</a>
+      <a class="sidebtn" href="../incidents.html" title="Incidents" aria-label="Incidents">🧾</a>
+      <a class="sidebtn" href="../security/" title="Security" aria-label="Security">🛡️</a>
+      <a class="sidebtn" href="../status/" title="Status" aria-label="Status">🟢</a>
+      <a class="sidebtn" href="../rca/" title="RCA Library" aria-label="RCA Library">🧩</a>
+      <a class="sidebtn" href="../runbooks/" title="Runbooks" aria-label="Runbooks">📘</a>
+      <a class="sidebtn active" href="./" title="Workflow Walkthrough" aria-label="Workflow Walkthrough">🧭</a>
+      <a class="sidebtn" href="../how-it-works.html" title="How it works" aria-label="How it works">🧠</a>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="brand"><span class="dot"></span> Workflow Walkthrough</div>
+        <nav class="pills">
+          <a class="pilllink" href="../index.html">Home</a>
+          <a class="pilllink" href="../incidents.html">Incidents</a>
+          <a class="pilllink" href="../runbooks/">Runbooks</a>
+          <a class="pilllink" href="../rca/">RCA</a>
+          <a class="pilllink" href="./">Workflow</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <h1>Alert → Evidence → Incident → Ticket → Runbook → RCA → Close → Executive Summary</h1>
+        <p>
+          Press <b>Run Demo</b> to simulate the full incident lifecycle. This generates safe sample artifacts
+          and visually highlights each phase the way an SRE/Monitoring engineer would actually work it.
+        </p>
+
+        <div class="btnrow">
+          <button class="btn primary" id="btnRun">Run Demo</button>
+          <button class="btn" id="btnNext">Next Step</button>
+          <button class="btn" id="btnReset">Reset</button>
+          <a class="btn" href="../how-it-works.html">How it works</a>
+        </div>
+
+        <div class="notice" style="margin-top:14px">
+          <b>Status:</b> <span id="statusText">Idle</span>
+          <span class="wf-badges">
+            <span class="badge"><span class="pill warn"></span> In Progress</span>
+            <span class="badge"><span class="pill good"></span> Complete</span>
+            <span class="badge"><span class="pill bad"></span> SEV / Impact</span>
+          </span>
+        </div>
+      </section>
+
+      <section class="grid">
+        <!-- Map -->
+        <div class="card span6">
+          <h2>Workflow Map</h2>
+          <p class="small">Each node lights up as the demo progresses. Completed steps are marked done.</p>
+
+          <div class="wf-map" id="wfMap">
+            <!-- nodes injected by JS -->
+          </div>
+
+          <div class="small" style="margin-top:12px">
+            Tip: You can click a node to jump directly to that step.
+          </div>
+        </div>
+
+        <!-- Timeline + Meta -->
+        <div class="card span6">
+          <h2>Timeline & Metadata</h2>
+          <p class="small">A quick, stakeholder-friendly trace of what happened and when.</p>
+
+          <div class="wf-timeline" id="wfTimeline"></div>
+
+          <div class="kv">
+            <div><div class="k">Incident</div><div class="v" id="metaIncident">—</div></div>
+            <div><div class="k">Ticket</div><div class="v" id="metaTicket">—</div></div>
+            <div><div class="k">Service</div><div class="v" id="metaService">—</div></div>
+            <div><div class="k">Region</div><div class="v" id="metaRegion">—</div></div>
+            <div><div class="k">Severity</div><div class="v" id="metaSev">—</div></div>
+            <div><div class="k">Alert ID</div><div class="v" id="metaAlert">—</div></div>
+          </div>
+        </div>
+
+        <!-- Artifacts -->
+        <div class="card span12">
+          <h2>Artifacts Output</h2>
+          <p class="small">This panel shows the “generated” evidence, tickets, runbook actions, RCA, and the executive summary.</p>
+
+          <div class="wf-artifact">
+            <div class="wf-artifact-head">
+              <div>
+                <div class="wf-artifact-title" id="artifactTitle">Ready</div>
+                <div class="wf-artifact-sub" id="artifactSub">Press “Run Demo” to generate a scenario.</div>
+              </div>
+              <div class="wf-mini">
+                <span class="badge"><span class="pill warn"></span> <span id="miniPhase">—</span></span>
+              </div>
+            </div>
+
+            <pre class="wf-terminal" id="artifactBody"></pre>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">Hosted on GitHub Pages • demo data only • no real systems exposed</div>
+    </main>
+  </div>
+
+  <script src="./workflow.js"></script>
+</body>
+</html>
