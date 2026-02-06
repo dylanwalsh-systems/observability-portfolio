@@ -37,22 +37,52 @@
       <section class="hero">
         <h1>How this demo works</h1>
         <p>
-          This project demonstrates a simple, repeatable incident workflow —
-          focusing on clear communication, evidence, and consistency.
+          This project demonstrates a simple, repeatable incident workflow — focusing on clear communication,
+          evidence, and consistency. It’s designed so a non-technical viewer can understand what happened,
+          what changed, and what was done about it.
         </p>
+
+        <div class="btnrow" style="margin-top:14px;">
+          <a class="btn primary" href="./incidents.html">Start: Open Incidents Inbox</a>
+          <a class="btn" href="./security/">Security Dashboard</a>
+        </div>
       </section>
 
       <section class="grid">
+
+        <div class="card span6">
+          <h2>60-second tour</h2>
+          <p class="small">If you only click one thing, do this:</p>
+          <ol class="small" style="margin:10px 0 0; padding-left:18px;">
+            <li>Open <b>Incidents</b> and select any incident.</li>
+            <li>Read the <b>Plain English</b> summary (what users felt + where it happened).</li>
+            <li>Review <b>Evidence</b> (delay, affected area, before/after).</li>
+            <li>Use <b>Copy update</b> / <b>Download ticket</b> to see the communication flow.</li>
+          </ol>
+        </div>
+
+        <div class="card span6">
+          <h2>What’s “real” vs demo</h2>
+          <p class="small">
+            Everything here is intentionally safe to share publicly.
+          </p>
+          <ul class="small" style="margin:10px 0 0; padding-left:18px;">
+            <li><b>Demo data:</b> synthetic incidents, anonymized locations, example metrics.</li>
+            <li><b>Real workflow:</b> triage → communicate → capture evidence → document decisions.</li>
+            <li><b>No risk:</b> no logins, no write actions, no sensitive endpoints exposed.</li>
+          </ul>
+        </div>
+
         <div class="card span6">
           <h2>1) A signal appears</h2>
           <p class="small">
-            Monitoring detects a change (for example: delay or dropped traffic).
-            The goal isn’t just to “show graphs” — it’s to turn the signal into a clear story.
+            Monitoring detects a change (for example: higher latency or dropped traffic).
+            The goal isn’t just to “show graphs” — it’s to turn a signal into a clear story.
           </p>
         </div>
 
         <div class="card span6">
-          <h2>2) We translate it into plain English</h2>
+          <h2>2) Translate into plain English</h2>
           <p class="small">
             Each incident answers: what users felt, where it happened, and what the impact looked like
             — without requiring technical knowledge.
@@ -64,15 +94,40 @@
           <p class="small">
             Each incident includes three screenshots:
             (1) symptom chart, (2) where it hit, (3) before/after comparison.
+            This makes incidents easy to review later and easy to communicate.
           </p>
         </div>
 
         <div class="card span6">
-          <h2>4) Timeline + update output</h2>
+          <h2>4) Updates + outcomes</h2>
           <p class="small">
-            Incidents include a simple timeline and buttons to download a ticket
-            or copy an email update — because communication is part of reliability.
+            Incidents include a simple timeline and “output” options (ticket / email update),
+            because communication is part of reliability — not an afterthought.
           </p>
+        </div>
+
+        <div class="card span6">
+          <h2>Where the other pages fit</h2>
+          <p class="small">
+            The console is split into sections so the flow feels like a real operations environment:
+          </p>
+          <ul class="small" style="margin:10px 0 0; padding-left:18px;">
+            <li><b>Status:</b> current health snapshot (what’s impacted right now).</li>
+            <li><b>RCA Library:</b> writeups that explain the why (what we learned).</li>
+            <li><b>Runbooks:</b> repeatable steps (how to respond consistently).</li>
+            <li><b>Security:</b> threat model + decisions (safe-by-design demo).</li>
+          </ul>
+        </div>
+
+        <div class="card span6">
+          <h2>What skills this demonstrates</h2>
+          <ul class="small" style="margin:10px 0 0; padding-left:18px;">
+            <li><b>Incident communication</b> (clear, non-technical updates)</li>
+            <li><b>Triage thinking</b> (signal vs noise, scope, impact)</li>
+            <li><b>Evidence-driven troubleshooting</b> (before/after validation)</li>
+            <li><b>Operational documentation</b> (runbooks + RCA habit)</li>
+            <li><b>Security-minded design</b> (public, read-only, low sensitivity)</li>
+          </ul>
         </div>
 
         <div class="card">
@@ -92,10 +147,31 @@
   </div>
 
   <script>
+    // Active nav highlighting (supports both .html pages and folder routes like /security/, /status/, etc.)
     (function () {
-      const path = location.pathname.split('/').pop() || 'index.html';
-      document.querySelectorAll('.sidebtn').forEach(a => {
-        if (a.getAttribute('href') && a.getAttribute('href').endsWith(path)) a.classList.add('active');
+      const p = location.pathname;
+
+      const isHow = p.endsWith("/how-it-works.html");
+      const isIncidents = p.endsWith("/incidents.html");
+      const isHome = p.endsWith("/") || p.endsWith("/index.html");
+      const isSecurity = p.includes("/security/");
+      const isStatus = p.includes("/status/");
+      const isRca = p.includes("/rca/");
+      const isRunbooks = p.includes("/runbooks/");
+
+      document.querySelectorAll(".sidebtn, .pilllink").forEach(a => {
+        const href = a.getAttribute("href") || "";
+
+        const match =
+          (isHow && href.includes("how-it-works")) ||
+          (isIncidents && href.includes("incidents")) ||
+          (isHome && (href.endsWith("index.html") || href === "./index.html" || href === "./" || href === "../index.html")) ||
+          (isSecurity && href.includes("security/")) ||
+          (isStatus && href.includes("status/")) ||
+          (isRca && href.includes("rca/")) ||
+          (isRunbooks && href.includes("runbooks/"));
+
+        if (match) a.classList.add("active");
       });
     })();
   </script>
