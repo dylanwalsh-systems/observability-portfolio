@@ -1,0 +1,136 @@
+/* Uses existing theme from ../assets/style.css */
+/* Only workflow-specific visuals live here */
+
+.wf-badges{
+  display:inline-flex;
+  gap:10px;
+  margin-left:10px;
+  flex-wrap:wrap;
+  vertical-align:middle;
+}
+
+.wf-map{
+  margin-top:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.wf-node{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 14px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  cursor:pointer;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+.wf-node:hover{
+  background: rgba(255,255,255,.09);
+  border-color: rgba(255,255,255,.18);
+  transform: translateY(-1px);
+}
+.wf-node .left{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.wf-stepnum{
+  width:34px;height:34px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;
+  background: rgba(0,0,0,.22);
+  border:1px solid rgba(255,255,255,.12);
+}
+.wf-node .name{font-weight:900}
+.wf-node .desc{font-size:12px;color:var(--muted);margin-top:2px}
+
+.wf-node .tag{
+  font-size:12px;
+  padding:7px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.18);
+  border:1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.86);
+  white-space:nowrap;
+}
+
+.wf-node.active{
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.22);
+  box-shadow: 0 0 0 4px rgba(255,255,255,.06);
+}
+.wf-node.done{
+  border-color: rgba(46, 204, 113, .35);
+  background: rgba(46, 204, 113, .08);
+}
+.wf-node.done .tag{
+  border-color: rgba(46, 204, 113, .35);
+}
+
+.wf-timeline{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:12px;
+}
+.wf-chip{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.16);
+  border:1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.82);
+  font-weight:800;
+  font-size:12px;
+}
+.wf-chip span{
+  font-weight:700;
+  color: var(--muted);
+}
+.wf-chip.active{
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.22);
+}
+.wf-chip.done{
+  border-color: rgba(46, 204, 113, .35);
+  background: rgba(46, 204, 113, .08);
+}
+
+.wf-artifact{
+  margin-top:12px;
+  border-radius: 24px;
+  background: rgba(0,0,0,.18);
+  border:1px solid rgba(255,255,255,.12);
+  overflow:hidden;
+}
+
+.wf-artifact-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+  padding:14px 14px;
+  background: rgba(255,255,255,.05);
+  border-bottom:1px solid rgba(255,255,255,.10);
+}
+.wf-artifact-title{font-weight:900}
+.wf-artifact-sub{font-size:12px;color:var(--muted);margin-top:3px}
+
+.wf-terminal{
+  margin:0;
+  padding:14px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(255,255,255,.90);
+  white-space: pre-wrap;
+  min-height: 360px;
+}
+
+.wf-mini{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
