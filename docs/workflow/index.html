@@ -4,7 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Workflow Walkthrough • Operations Console (Demo)</title>
+
+  <!-- Shared site theme -->
   <link rel="stylesheet" href="../assets/style.css" />
+  <!-- Workflow-specific styling -->
   <link rel="stylesheet" href="./workflow.css" />
 </head>
 <body>
@@ -18,7 +21,7 @@
       <a class="sidebtn" href="../status/" title="Status" aria-label="Status">🟢</a>
       <a class="sidebtn" href="../rca/" title="RCA Library" aria-label="RCA Library">🧩</a>
       <a class="sidebtn" href="../runbooks/" title="Runbooks" aria-label="Runbooks">📘</a>
-      <a class="sidebtn active" href="./" title="Workflow Walkthrough" aria-label="Workflow Walkthrough">🧭</a>
+      <a class="sidebtn" href="./" title="Workflow Walkthrough" aria-label="Workflow Walkthrough">🧭</a>
       <a class="sidebtn" href="../how-it-works.html" title="How it works" aria-label="How it works">🧠</a>
     </aside>
 
@@ -37,11 +40,20 @@
       <section class="hero">
         <h1>Alert → Evidence → Incident → Ticket → Runbook → RCA → Close → Executive Summary</h1>
         <p>
-          Press <b>Run Demo</b> to simulate the full incident lifecycle. This generates safe sample artifacts
-          and visually highlights each phase the way an SRE/Monitoring engineer would actually work it.
+          Press <b>Run Demo</b> to simulate the full incident lifecycle. Pick a scenario (or random) and watch the
+          workflow generate evidence, tickets, mitigation steps, RCA, and an exec summary.
         </p>
 
         <div class="btnrow">
+          <select class="btn" id="scenarioSelect" title="Scenario">
+            <option value="random">🎲 Random scenario</option>
+            <option value="network">🌐 Network flap (BGP/packet loss)</option>
+            <option value="deploy">🚀 Bad deploy (pool exhaustion)</option>
+            <option value="dns">🧭 DNS latency spike</option>
+            <option value="cert">🔒 Certificate/PKI mismatch</option>
+            <option value="db">🗄️ Database slow query / lock</option>
+          </select>
+
           <button class="btn primary" id="btnRun">Run Demo</button>
           <button class="btn" id="btnNext">Next Step</button>
           <button class="btn" id="btnReset">Reset</button>
@@ -87,13 +99,14 @@
             <div><div class="k">Region</div><div class="v" id="metaRegion">—</div></div>
             <div><div class="k">Severity</div><div class="v" id="metaSev">—</div></div>
             <div><div class="k">Alert ID</div><div class="v" id="metaAlert">—</div></div>
+            <div><div class="k">Scenario</div><div class="v" id="metaScenario">—</div></div>
           </div>
         </div>
 
         <!-- Artifacts -->
         <div class="card span12">
           <h2>Artifacts Output</h2>
-          <p class="small">This panel shows the “generated” evidence, tickets, runbook actions, RCA, and the executive summary.</p>
+          <p class="small">This panel shows the generated evidence, tickets, runbook actions, RCA, and the executive summary.</p>
 
           <div class="wf-artifact">
             <div class="wf-artifact-head">
@@ -115,7 +128,9 @@
     </main>
   </div>
 
+  <!-- Shared JS (nav highlight, etc.) -->
   <script src="../assets/app.js"></script>
+  <!-- Workflow logic -->
   <script src="./workflow.js"></script>
 </body>
 </html>
