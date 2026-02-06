@@ -1,6 +1,7 @@
 /* Uses existing theme from ../assets/style.css */
 /* Only workflow-specific visuals live here */
 
+/* Layout helpers */
 .wf-badges{
   display:inline-flex;
   gap:10px;
@@ -9,6 +10,7 @@
   vertical-align:middle;
 }
 
+/* Map */
 .wf-map{
   margin-top:12px;
   display:flex;
@@ -26,27 +28,39 @@
   background: rgba(255,255,255,.06);
   border:1px solid rgba(255,255,255,.12);
   cursor:pointer;
-  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
 .wf-node:hover{
   background: rgba(255,255,255,.09);
   border-color: rgba(255,255,255,.18);
   transform: translateY(-1px);
 }
+.wf-node:active{
+  transform: translateY(0px);
+}
+
 .wf-node .left{
   display:flex;
   gap:12px;
   align-items:center;
+  min-width: 0; /* allow text truncate */
 }
+
 .wf-stepnum{
   width:34px;height:34px;border-radius:14px;
   display:flex;align-items:center;justify-content:center;
   font-weight:900;
   background: rgba(0,0,0,.22);
   border:1px solid rgba(255,255,255,.12);
+  flex: 0 0 auto;
 }
+
 .wf-node .name{font-weight:900}
-.wf-node .desc{font-size:12px;color:var(--muted);margin-top:2px}
+.wf-node .desc{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:2px;
+}
 
 .wf-node .tag{
   font-size:12px;
@@ -56,8 +70,10 @@
   border:1px solid rgba(255,255,255,.12);
   color: rgba(255,255,255,.86);
   white-space:nowrap;
+  flex: 0 0 auto;
 }
 
+/* Active / Done states */
 .wf-node.active{
   background: rgba(255,255,255,.10);
   border-color: rgba(255,255,255,.22);
@@ -71,12 +87,14 @@
   border-color: rgba(46, 204, 113, .35);
 }
 
+/* Timeline */
 .wf-timeline{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
   margin-top:12px;
 }
+
 .wf-chip{
   display:flex;
   align-items:center;
@@ -102,6 +120,7 @@
   background: rgba(46, 204, 113, .08);
 }
 
+/* Artifact panel */
 .wf-artifact{
   margin-top:12px;
   border-radius: 24px;
@@ -119,6 +138,7 @@
   background: rgba(255,255,255,.05);
   border-bottom:1px solid rgba(255,255,255,.10);
 }
+
 .wf-artifact-title{font-weight:900}
 .wf-artifact-sub{font-size:12px;color:var(--muted);margin-top:3px}
 
@@ -133,4 +153,69 @@
   min-height: 360px;
 }
 
-.wf-mini{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.wf-mini{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* ---- Make <select class="btn"> match the OC button styling ---- */
+select.btn{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* Keep consistent sizing with buttons */
+  min-height: 40px;
+  line-height: 1.1;
+
+  /* Space for the arrow */
+  padding-right: 40px;
+
+  /* Avoid cramped text */
+  max-width: 320px;
+}
+
+/* Custom dropdown arrow + divider line */
+select.btn{
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(255,255,255,.85) 50%),
+    linear-gradient(135deg, rgba(255,255,255,.85) 50%, transparent 50%),
+    linear-gradient(to right, rgba(255,255,255,.14), rgba(255,255,255,.14));
+  background-position:
+    calc(100% - 18px) 52%,
+    calc(100% - 12px) 52%,
+    calc(100% - 34px) 50%;
+  background-size:
+    6px 6px,
+    6px 6px,
+    1px 60%;
+  background-repeat: no-repeat;
+}
+
+/* Hover/Focus states consistent with .btn */
+select.btn:hover{
+  background-color: rgba(0,0,0,.24);
+}
+
+select.btn:focus{
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.22);
+}
+
+/* OS-native menu; this helps some browsers keep contrast */
+select.btn option{
+  color:#111;
+}
+
+/* Safari edge case */
+@supports (-webkit-touch-callout: none) {
+  select.btn:hover{ filter: brightness(1.05); }
+}
+
+/* Mobile/Small screens: allow select to shrink */
+@media (max-width: 520px){
+  select.btn{ max-width: 100%; }
+}
